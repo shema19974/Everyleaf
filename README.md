@@ -5,12 +5,14 @@
 |               | email          |  string  |
 |               | password       |  string  |
 |               | timestamps     |  date    |
+
 | Table         | Column         | Datatype |
 | ------------- |:--------------:| -----:   |
 |               | id             |  integer |
 |   profiles    | user_id        |  integer |
 |               | image          |  text    |
 |               | timestamps     |  date    |
+
 | Table         | Column         | Datatype |
 | ------------- |:------------- :| -----:   |
 |               | id             |  integer |
