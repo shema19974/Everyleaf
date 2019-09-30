@@ -5,6 +5,8 @@ FactoryBot.define do
     factory :task do
       title { 'Student' }
       content { 'Is a good student' }
+      start_date {'2019-10-10'}
+      end_date {'2019-10-10'}
     end
   
     # Name the test data to be created as "second_task"
@@ -12,5 +14,7 @@ FactoryBot.define do
     factory :second_task, class: Task do
       title { 'Accountant' }
       content { 'Balance money' }
+      start_date {'2019-10-10'}
+      end_date {'2019-10-10'}
     end
   end
