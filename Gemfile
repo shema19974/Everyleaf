@@ -58,7 +58,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'chromedriver-helper'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.7'
   gem 'spring-commands-rspec'
 end
 
