@@ -22,3 +22,13 @@
 |               | start_date    |  date    |
 |               | end_date      |  date    |
 |               | timestamps    |  date    |
+
+
+How to deploy
+---
+-Firstly you have to create an account on heroku
+-After creating an account, you link it with git by running the following command: heroku    login --interactive
+-create an you create heroku application: heroku create
+-You push on heroku by running : git push heroku master
+-create the database that will run on heroku: heroku rake db:create
+ 
