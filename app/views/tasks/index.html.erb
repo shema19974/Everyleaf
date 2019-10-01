@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Tasks</h1>
 <br>
-<%= link_to "sort by expiration date", sorts_index_path %>
 <br>
 <table>
   <thead>
@@ -32,4 +31,7 @@
 </table>
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to 'New Task', new_task_path, style:'margin-bottom:20px;'%>
+<br>
+<%= link_to 'Task sorted with created_at', tasks_path, style:'margin-right:20px;margin-top:20px;'%>
+<%= link_to 'Task sorted with end_date', tasks_path(sort_with:'true')%>
