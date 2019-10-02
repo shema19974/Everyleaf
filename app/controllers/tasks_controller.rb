@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+<<<<<<< HEAD
   def index      
     @search = Task.search(params[:q])
     if params[:q]
@@ -11,6 +12,10 @@ class TasksController < ApplicationController
     else
       @tasks = Task.order('created_at DESC')
     end
+=======
+  def index
+    @tasks = Task.all.order('created_at DESC')
+>>>>>>> parent of 4b5f7fd... After including the priority and pagination features
   end
 
   def show
@@ -63,7 +68,11 @@ class TasksController < ApplicationController
   end
 
   def task_params
+<<<<<<< HEAD
     params.require(:task).permit(:title, :content, :start_date, :end_date, :status, :priority)
 
+=======
+    params.require(:task).permit(:title, :content, :start_date, :end_date)
+>>>>>>> parent of 4b5f7fd... After including the priority and pagination features
   end
 end

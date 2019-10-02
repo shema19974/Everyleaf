@@ -30,10 +30,6 @@
     <%= form.label :end_date %>
     <%= form.date_select :end_date %>
   </div>
-  <div>
-    <%= form.label :priority %>
-    <%= form.radio_button :priority, 'low' %>Low <%= form.radio_button :priority, 'medium' %> Medium<%= form.radio_button :priority, 'high' %>High
-  </div>
 
   <div class="field">
     <%= form.label :status %>
@@ -43,5 +39,4 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-
 <% end %>

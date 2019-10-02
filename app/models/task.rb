@@ -3,6 +3,4 @@ class Task < ApplicationRecord
     validates :content, presence:true 
     validates :start_date, presence:true
     validates :end_date, presence:true
-    enum priority: [:low, :medium, :high]
-    paginates_per 5
 end

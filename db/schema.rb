@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_10_01_195425) do
+=======
+ActiveRecord::Schema.define(version: 2019_09_23_120631) do
+>>>>>>> parent of 4b5f7fd... After including the priority and pagination features
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +26,13 @@ ActiveRecord::Schema.define(version: 2019_10_01_195425) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.integer "priority", default: 0
     t.string "status", default: "Not started"
     t.index ["status"], name: "index_tasks_on_status"
     t.index ["title"], name: "index_tasks_on_title"
+=======
+>>>>>>> parent of 4b5f7fd... After including the priority and pagination features
   end
 
 end

@@ -34,14 +34,22 @@ RSpec.feature "Task management function", type: :feature do
     expect(page).to have_content 'A good student'    
   end
 <<<<<<< HEAD
+<<<<<<< HEAD
   scenario "Test whether tasks are arranged in descending order of creation date" do
       visit tasks_path
       assert Task.order('created ASC')      
+=======
+
+  scenario "Test task details" do
+    # Task.create!(title: 'Employee', content: 'Is a good student')
+    visit tasks_path
+    click_link 'Show'
+    expect(page).to have_content 'A good student'
+>>>>>>> parent of 4b5f7fd... After including the priority and pagination features
   end
-  scenario "Test whether tasks are arranged in descending order of priority" do
-    visit tasks_path 
-    click_link 'Sort By Priority'
-    assert Task.order('priority DESC')
+
+  scenario "Test whether tasks are arranged in descending order of creation date" do
+    
   end
 =======
 
@@ -82,5 +90,10 @@ RSpec.feature "Task management function", type: :feature do
 
 
 >>>>>>> origin/master
+
+
+scenario "sort in  order " do
+assert Task.order('created ASC')
+end
 
 end
