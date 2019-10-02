@@ -35,6 +35,11 @@
     <%= form.radio_button :priority, 'low' %>Low <%= form.radio_button :priority, 'medium' %> Medium<%= form.radio_button :priority, 'high' %>High
   </div>
 
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.radio_button :status, 'Not stated' %>Not stated <%= form.radio_button :status, 'In progress' %>In progress <%= form.radio_button :status, 'Ended' %>Ended
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
