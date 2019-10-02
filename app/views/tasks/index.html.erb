@@ -43,7 +43,7 @@
   </tbody>
 </table>
 <br>
-<%= paginate @tasks%>
+<%# <%= paginate @tasks%>
 <%= link_to 'New Task', new_task_path, style:'margin-bottom:20px;'%>
 <br>
 <%= link_to 'Sort By Priority', tasks_path(sort_with_priority: 'true')%>
