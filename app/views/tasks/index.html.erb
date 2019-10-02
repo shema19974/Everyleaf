@@ -1,18 +1,5 @@
 <p id="notice"><%= notice %></p>
 <h1>Tasks</h1>
-<%= search_form_for(@search,local: true) do |f| %>
-  <div>
-    <%= f.label :title_cont, "Enter the title" %>
-    <%= f.search_field :title_cont %> 
-  </div> 
-  <div>
-    <%= f.label :status_cont, "Enter the status" %>
-    <%= f.search_field :status_cont %> 
-  </div> 
-  <div>
-    <%= f.submit "Search"%>
-  </div>
-<% end %>
 <br>
 <br>
 <table>
@@ -23,7 +10,6 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Created_Time</th>
-      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>  

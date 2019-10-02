@@ -34,41 +34,20 @@ RSpec.feature "Task management function", type: :feature do
     expect(page).to have_content 'A good student'    
   end
 
-  # scenario "Test task details" do
-  #   # Task.create!(title: 'Employee', content: 'Is a good student', start_date: '2019-10-10', end_date: '2019-10-10')
-  #   visit tasks_path
-  #   click_button 'Show'
-  #   expect(page).to have_content 'Is a good student'
-  # end
+  scenario "Test task details" do
+    # Task.create!(title: 'Employee', content: 'Is a good student')
+    visit tasks_path
+    click_link 'Show'
+    expect(page).to have_content 'A good student'
+  end
 
   scenario "Test whether tasks are arranged in descending order of creation date" do
-    Task.all.order('created_at desc')
-    visit tasks_path
-  end
-
-  scenario "test the search by title" do
-    visit tasks_path
-    fill_in 'Enter the title', with: 'student'
-    click_button 'Search'
-    expect(page).to have_content 'student'
-  end
- 
-  scenario "test the search by status" do
-    visit tasks_path
-    fill_in 'Enter the status', with: 'Not stated'
-    click_button 'Search'
-    expect(page).to have_content 'Not stated'
-  end
-
-  scenario "test the search by status and title" do
-    visit tasks_path
-    fill_in 'Enter the title', with: 'student'
-    fill_in 'Enter the status', with: 'Not stated'
-    click_button 'Search'
-    expect(page).to have_content 'Not stated'
+    
   end
 
 
-
+scenario "sort in  order " do
+assert Task.order('created ASC')
+end
 
 end

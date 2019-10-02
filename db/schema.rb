@@ -1,4 +1,5 @@
-ActiveRecord::Schema.define(version: 2019_10_01_092140) do
+ActiveRecord::Schema.define(version: 2019_09_30_171746) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -9,9 +10,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_092140) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status", default: "Not started"
-    t.index ["status"], name: "index_tasks_on_status"
-    t.index ["title"], name: "index_tasks_on_title"
+    t.string "status", default: "Not stated"
   end
 
 end
