@@ -1,10 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    if params[:sort_with]
-      @tasks = Task.order('end_date DESC')
-    else
-      @tasks = Task.order('created_at DESC')
+    @search = Task.ransack(params[:q])
+    if params[:q]
+      @tasks = @search.result.page(params[:page])
+    elsif params[:sort_with_priority]
+      @tasks = Task.order('priority DESC').page(params[:page])
+    elsif params[:sort_with_ended_at]
+      @tasks = Task.order('end_date DESC').page(params[:page])
+    else params[:sort_with_created_at]
+      @tasks = Task.order('created_at DESC').page(params[:page])
     end
   end
 
@@ -53,11 +58,11 @@ class TasksController < ApplicationController
   end
 
   private
-  def set_task
+    def set_task
     @task = Task.find(params[:id])
-  end
+    end
 
-  def task_params
-    params.require(:task).permit(:title, :content, :start_date, :end_date, :status)
-  end
+    def task_params
+    params.require(:task).permit(:title, :content, :start_date, :end_date, :status,:priority)
+    end
 end

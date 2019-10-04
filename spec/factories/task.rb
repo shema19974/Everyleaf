@@ -7,6 +7,8 @@ FactoryBot.define do
       content { 'Is a good student' }
       start_date {'2019-10-10'}
       end_date {'2019-10-10'}
+      status {'Ended'}
+      priority {'high'}
     end
   
     # Name the test data to be created as "second_task"
@@ -16,5 +18,7 @@ FactoryBot.define do
       content { 'Balance money' }
       start_date {'2019-10-10'}
       end_date {'2019-10-10'}
+      status {'In progress'}
+      priority {'medium'}
     end
   end
