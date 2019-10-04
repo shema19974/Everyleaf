@@ -9,13 +9,9 @@ RSpec.feature "Task management function", type: :feature do
     FactoryBot.create(:task)
     FactoryBot.create(:second_task)
   end
+
   scenario "Test task list" do    
-    
-  # visit to tasks_path (transition to task list page)
   visit tasks_path
-
-  # write a test to verify that the string "" testtesttest "" samplesample "is included when accessing the task list page using have_content method
-
   expect(page).to have_content 'Student'
   expect(page).to have_content 'Accountant'
   end
@@ -44,25 +40,13 @@ RSpec.feature "Task management function", type: :feature do
 
 
   # scenario "Test task details" do
-  #   # Task.create!(title: 'Employee', content: 'Is a good student', start_date: '2019-10-10', end_date: '2019-10-10')
+  #   # Task.create!(title: 'Employee', content: 'Is a good student')
   #   visit tasks_path
-  #   click_button 'Show'
-  #   expect(page).to have_content 'Is a good student'
+  #   click_link 'Show'
+  #   expect(page).to have_content 'A good student'
   # end
 
   scenario "Test whether tasks are arranged in descending order of creation date" do
-    Task.all.order('created_at desc')
-    visit tasks_path
-  end
-
-  scenario "test the search by title" do
-    visit tasks_path
-    fill_in 'Enter the title', with: 'student'
-    click_button 'Search'
-    expect(page).to have_content 'student'
-  end
- 
-  scenario "test the search by status" do
     visit tasks_path
     fill_in 'Enter the status', with: 'Ended'
     click_button 'Search'
@@ -78,3 +62,5 @@ RSpec.feature "Task management function", type: :feature do
     
   end
 end
+
+
