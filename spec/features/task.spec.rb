@@ -48,6 +48,11 @@ RSpec.feature "Task management function", type: :feature do
   #   expect(page).to have_content 'A good student'
   # end
 
+  scenario "Test whether tasks are arranged in descending order of priority" do
+    visit tasks_path
+    assert Task.order('priority DESC')
+  end
+
   scenario "test the search by title" do
     visit tasks_path
     fill_in 'Enter the title', with: 'Student'
@@ -57,7 +62,7 @@ RSpec.feature "Task management function", type: :feature do
 
   scenario "test the search by status" do
     visit tasks_path
-    fill_in 'Enter the status', with: 'Ended'
+    fill_in 'Enter the statut', with: 'Student'
     click_button 'Search'
     expect(page).to have_content 'Student'
   end
@@ -68,11 +73,6 @@ RSpec.feature "Task management function", type: :feature do
     fill_in 'Enter the title', with: 'Student'
     click_button 'Search'
     expect(page).to have_content 'Ended'
-  end
-
-  scenario "Test whether tasks are arranged in descending order of priority" do
-    visit tasks_path
-    assert Task.order('priority DESC')
   end
 
 end
