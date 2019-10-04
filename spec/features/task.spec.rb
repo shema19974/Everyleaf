@@ -32,11 +32,9 @@ RSpec.feature "Task management function", type: :feature do
 
   scenario "Test whether tasks are arranged in descending order of creation date" do
       visit tasks_path
-      assert Task.order('created ASC')    
+      assert Task.order('created_at ASC')    
   end  
-  scenario "Test whether tasks are arranged in descending order of creation date" do
-    
-  end
+  
 
 
   # scenario "Test task details" do
