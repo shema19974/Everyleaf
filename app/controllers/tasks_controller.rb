@@ -1,21 +1,16 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-<<<<<<< HEAD
-  def index      
-    @search = Task.search(params[:q])
-    if params[:q]
-      @tasks = @search.result
-    elsif params[:sort_with]
-      @tasks = Task.order('end_date DESC')
-    elsif params[:sort_with_priority]
-      @tasks = Task.all.order('priority DESC').page(params[:page])   
-    else
-      @tasks = Task.order('created_at DESC')
-    end
-=======
   def index
-    @tasks = Task.all.order('created_at DESC')
->>>>>>> parent of 4b5f7fd... After including the priority and pagination features
+    @search = Task.ransack(params[:q])
+    if params[:q]
+      @tasks = @search.result.page(params[:page])
+    elsif params[:sort_with_priority]
+      @tasks = Task.order('priority DESC').page(params[:page])
+    elsif params[:sort_with_ended_at]
+      @tasks = Task.order('end_date DESC').page(params[:page])
+    else params[:sort_with_created_at]
+      @tasks = Task.order('created_at DESC').page(params[:page])
+    end
   end
 
   def show
@@ -68,11 +63,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-<<<<<<< HEAD
-    params.require(:task).permit(:title, :content, :start_date, :end_date, :status, :priority)
-
-=======
-    params.require(:task).permit(:title, :content, :start_date, :end_date)
->>>>>>> parent of 4b5f7fd... After including the priority and pagination features
+    params.require(:task).permit(:title, :content, :start_date, :end_date, :status,:priority)
   end
 end
