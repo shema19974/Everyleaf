@@ -30,6 +30,15 @@ RSpec.feature "Task management function", type: :feature do
     expect(page).to have_content 'A good student'    
   end
 
+  scenario "Test whether tasks are arranged in descending order of creation date" do
+      visit tasks_path
+      assert Task.order('created ASC')    
+  end  
+  scenario "Test whether tasks are arranged in descending order of creation date" do
+    
+  end
+
+
   # scenario "Test task details" do
   #   # Task.create!(title: 'Employee', content: 'Is a good student')
   #   visit tasks_path
@@ -39,13 +48,19 @@ RSpec.feature "Task management function", type: :feature do
 
   scenario "Test whether tasks are arranged in descending order of creation date" do
     visit tasks_path
-    assert Task.order('created_at DESC')
+    fill_in 'Enter the status', with: 'Ended'
+    click_button 'Search'
+    expect(page).to have_content 'Ended'
   end
 
-  scenario "Test whether tasks are arranged in descending order of end_date" do
-    visit tasks_path
-    assert Task.order('end_date DESC')
+  scenario "test the search by status and title" do
+    
   end
 
 
+  scenario "Test whether tasks are arranged in descending order of creation date" do
+    
+  end
 end
+
+
