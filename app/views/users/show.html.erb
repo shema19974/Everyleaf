@@ -1,0 +1,11 @@
+<div class="container navigation_bar card">
+  <div class="card-body">
+    <p>Name: <%= @user.name %></p>
+    <p>Email address: <%= @user.email %></p>
+  <div>
+  <div class="card-footer">
+    <%= link_to 'Back', users_path, class:'btn btn-secondary btn-sm' %>
+    <%= link_to 'Edit', edit_user_path(@user), class:'btn btn-warning btn-sm' %>
+  <div>
+  
+</div>

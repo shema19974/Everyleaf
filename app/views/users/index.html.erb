@@ -1,0 +1,26 @@
+<div class="container navigation_bar">
+ <h1>All Users</h1>    
+    <table class="table table-hover table-bordered navigation_bar">
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Action</td>
+    </tr>
+    </thead>
+   
+    <tbody>
+     <% @users.each do |item| %>
+    <tr>
+        <td><%= item.name%></td>
+        <td><%= item.email%></td>
+        <td>  
+          <%= link_to 'Edit', edit_user_path(item), class:'btn btn-warning' %>
+          <%= link_to 'Destroy', item, class:'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>        
+        </td>
+    </tr>     
+    <%end%>     
+    </tbody>
+ </table>    
+</div>
+ 

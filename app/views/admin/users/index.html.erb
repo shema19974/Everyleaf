@@ -1,0 +1,76 @@
+<div class="container navigation_bar">
+  <h1>All Users</h1>
+    
+    <table class="table table-hover table-bordered navigation_bar">
+      <thead>
+      <tr>
+          <td>Name</td>
+          <td>Email</td>
+          <td>NO. of tasks</td>
+          <td>Action</td>
+      </tr>
+      </thead>   
+      <tbody>
+      <% @users.each do |item| %>
+      <tr>
+          <td><%= item.name%></td>
+          <td><%= item.email%></td>
+          <td><%= Task.where(user_id: item.id).count %><td>
+          <td>
+           <%= link_to 'Edit', edit_user_path(item), class:'btn btn-warning btn-sm' %>
+           <%= link_to 'Destroy', item, class:'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>              
+          </td>
+      </tr>     
+      <%end%>    
+      </tbody>
+    </table>    
+<%= link_to 'New user', new_user_path, class:'btn btn-primary'%> 
+
+<h1>Tasks</h1>
+<br>
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Created_Time</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>User</th>
+      <th>Action</th>
+    </tr>
+    
+  </thead>  
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>      
+          <td><%= task.title %></td>
+          <td><%= task.content %></td>
+          <td><%= task.start_date %></td>
+          <td><%= task.end_date %></td>
+          <td><%= task.created_at %></td>
+          <td><%= task.status%></td>
+          <td><%= task.priority %></td>
+          <td><%= task.user.name %></td>
+          <td><%= link_to 'Show', task, class:'btn btn-secondary btn-sm' %>
+          <%= link_to 'Edit', edit_task_path(task), class:'btn btn-warning btn-sm' %>
+          <%= link_to 'Destroy', task, class:'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>          
+      </tr>  
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= paginate @tasks %>
+<%= link_to 'New Task', new_task_path, class:'btn btn-primary'%>
+<br>
+<div id="links">
+  <%= link_to 'Sort By created_at', tasks_path(sort_with_created_at: 'true'), class:'btn btn-secondary my_links'%>
+  <%= link_to 'Sort By deadline', tasks_path(sort_with_ended_at: 'true'), class:'btn btn-secondary my_links'%>
+  <%= link_to 'Sort By Priority', tasks_path(sort_with_priority: 'true'), class:'btn btn-secondary my_links'%> 
+</div>
+</div>
+ 

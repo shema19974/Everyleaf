@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-
+    @task.user_id = current_user.id
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -63,6 +63,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-    params.require(:task).permit(:title, :content, :start_date, :end_date, :status,:priority)
+    params.require(:task).permit(:title, :content, :start_date, :end_date, :status,:priority, :user_id)
     end
 end
