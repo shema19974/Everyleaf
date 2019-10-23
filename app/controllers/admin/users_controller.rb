@@ -1,5 +1,12 @@
 class Admin::UsersController < ApplicationController
   before_action :find_param, only: [:show, :edit, :update, :destroy]
+  before_action :must_be_admin
+
+  def must_be_admin
+    unless current_user.admin == "true"
+      redirect_to root_path, notice:"To go to this page, you must be an admin"
+    end
+  end
   def new
     @user = User.new
   end
@@ -8,13 +15,17 @@ class Admin::UsersController < ApplicationController
     @users = User.all
     @tasks=Task.all.page(params[:page])
   end
-
   def create
     @user = User.new(user_params)
-    if @user.save
-      redirect_to new_session_path
-    else
-      render 'new'
+    respond_to do |format|
+      if @user.save
+        session[:user_id]= @user.id
+        format.html { redirect_to admin_users_path(@user.id), notice: 'User was successfully created.' }
+        format.json { render :index, status: :created, location: @task }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 

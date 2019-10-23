@@ -1,4 +1,6 @@
 <div class="container navigation_bar">
+<%= link_to "List of users", users_path%>
+<%= link_to "List of users", admin_users_path%>
   <h1>All Users</h1>
     
     <table class="table table-hover table-bordered navigation_bar">
@@ -16,6 +18,7 @@
           <td><%= item.name%></td>
           <td><%= item.email%></td>
           <td><%= Task.where(user_id: item.id).count %><td>
+          <td><%= item.admin%></td>
           <td>
            <%= link_to 'Edit', edit_user_path(item), class:'btn btn-warning btn-sm' %>
            <%= link_to 'Destroy', item, class:'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>              

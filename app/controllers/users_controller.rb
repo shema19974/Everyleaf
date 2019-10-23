@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save 
+        session[:user_id]= @user.id
         format.html { redirect_to tasks_path, notice: 'User was successfully created.' }
       else
         render 'new'
@@ -19,10 +20,6 @@ class UsersController < ApplicationController
     end
   end
   def destroy
-    if @user.tasks.present?
-      @task=Task.where(user_id: @user.id)
-      @task.destroy_all
-    end
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
