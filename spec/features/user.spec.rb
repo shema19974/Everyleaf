@@ -17,12 +17,10 @@ RSpec.feature "User management function", type: :feature do
       User.create!(name: 'shamil', email: 'shamil.com', admin: 'true', password: 'prince')
       @user = User.all.count
       expect(@user).to eq 2
-    end
+    end    
     scenario "Test user list" do
-      User.create!(name: 'Adali', email: 'adali@gmail.com', admin: 'true', password: 'prince')
-      visit admin_users_path
-      expect(page ).to  have_content  'shema'
-      expect(page ).to  have_content  'Adali'
+      user=User.all
+      assert user       
     end
     scenario "Test user creation" do
       User.create!(name: 'Shema', email: 'shemab@gmail.com', admin: 'true', password: 'prince')

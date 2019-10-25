@@ -21,9 +21,14 @@ class UsersController < ApplicationController
   end
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+    if @user.id == current_user.id
+      redirect_to admin_users_url, notice: "You are not allowed to delete a signed user"
+      @admin = User.count_admins
+    elsif @admin == 1
+      redirect_to admin_users_url, notice: "At least one admin must remain!"
+    else
+      @user.destroy
+      redirect_to admin_users_url, notice: 'User was successfully destroyed.'
     end
   end
 

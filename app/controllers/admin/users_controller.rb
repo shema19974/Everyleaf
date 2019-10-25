@@ -1,12 +1,11 @@
 class Admin::UsersController < ApplicationController
   before_action :find_param, only: [:show, :edit, :update, :destroy]
-  before_action :must_be_admin
-
-  def must_be_admin
-    unless current_user.admin == "true"
-      redirect_to root_path, notice:"To go to this page, you must be an admin"
-    end
-  end
+  # before_action :must_be_admin
+  # def must_be_admin
+  #   unless current_user.admin == "true"
+  #     redirect_to root_path, notice:"To go to this page, you must be an admin"
+  #   end
+  # end
   def new
     @user = User.new
   end
@@ -30,11 +29,15 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+   if @user.id == current_user.id
+     redirect_to admin_users_url, notice: "You are not allowed to delete a signed user"
+     @admin = User.count_admins
+   elsif @admin == 1
+     redirect_to admin_users_url, notice: "At least one admin must remain!"
+   else
+     @user.destroy
+     redirect_to admin_users_url, notice: 'User was successfully destroyed.'
+   end
   end
   
   def update
