@@ -13,14 +13,17 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save 
         session[:user_id]= @user.id
-        format.html { redirect_to tasks_path, notice: 'User was successfully created.' }
-      else
-        render 'new'
+        if @user.admin?
+            format.html { redirect_to admin_users_url, notice: 'User was successfully created'}
+          elsif !@user.admin?
+            format.html { redirect_to tasks_path, notice: 'User was successfully created.' }
+          else
+            render 'new'
+        end
       end
     end
   end
   def destroy
-    @user.destroy
     if @user.id == current_user.id
       redirect_to admin_users_url, notice: "You are not allowed to delete a signed user"
       @admin = User.count_admins
