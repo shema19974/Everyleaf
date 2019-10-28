@@ -6,28 +6,32 @@ RSpec.feature "Task management function", type: :feature do
   background do
     # Task.create!(title: 'Student', content: 'Is a good student')
     # Task.create!(title: 'Accountant', content: 'Balance money')
-    FactoryBot.create(:task)
-    FactoryBot.create(:second_task)
+    User.create!(name: "shema", email: 'shema@gmail.com',  password: 'prince')
+    visit  root_path
+    fill_in  'Email' ,  with: 'shema@gmail.com'
+    fill_in  'Password' ,  with: 'prince'
+    click_on  'Log in'    
   end
 
   scenario "Test task list" do    
-  visit tasks_path
-  expect(page).to have_content 'Student'
-  expect(page).to have_content 'Accountant'
+
+    visit new_task_path
+
+    @user=User.first
+  Task.create!(title: "test", content: "content1", user_id: @user.id)
+  Task.create!(title: "test2", content: "content2",user_id: @user.id)
+    visit tasks_path
+    expect(page).to have_content 'test'
+    expect(page).to have_content 'test2'
   end
 
   scenario "Test task creation" do
-    # 1.Write the process to visit new_task_path here
-    visit new_task_path
-    # 2.Write the process to fill_in (input) the contents in the input field of label name "task name" here
-   
-    # 3.Write the process to fill_in (input) the contents in the input column of the label name "task details" here
-    fill_in 'Title', with: 'Student'
-    fill_in 'Content', with: 'A good student'
-    click_button '登録する'
-    visit tasks_path
-    expect(page).to have_content 'Student'
-    expect(page).to have_content 'A good student'    
+    @user=User.first
+    
+    Task.create!(title: "test2", content: "content2",user_id: @user.id)
+      visit tasks_path
+      
+      expect(page).to have_content 'test2'  
   end
 
   scenario "Test whether tasks are arranged in descending order of creation date" do
@@ -41,12 +45,7 @@ RSpec.feature "Task management function", type: :feature do
   end
 
 
-  # scenario "Test task details" do
-  #   # Task.create!(title: 'Employee', content: 'Is a good student')
-  #   visit tasks_path
-  #   click_link 'Show'
-  #   expect(page).to have_content 'A good student'
-  # end
+
 
   scenario "Test whether tasks are arranged in descending order of priority" do
     visit tasks_path
@@ -54,25 +53,31 @@ RSpec.feature "Task management function", type: :feature do
   end
 
   scenario "test the search by title" do
+    @user=User.first
+    Task.create!(title: "test", content: "content1", user_id: @user.id)
     visit tasks_path
-    fill_in 'Enter the title', with: 'Student'
+    fill_in 'Enter a title or status you want to search: ', with: 'test'
     click_button 'Search'
-    expect(page).to have_content 'Student'
+    expect(page).to have_content 'test'
   end
 
   scenario "test the search by status" do
+    @user=User.first
+    Task.create!(title: "test", content: "content2", user_id: @user.id)
     visit tasks_path
-    fill_in 'Enter the statut', with: 'Student'
+    fill_in 'Enter a title or status you want to search: ', with: 'test'
     click_button 'Search'
-    expect(page).to have_content 'Student'
+    expect(page).to have_content 'Not started'
   end
   
   scenario "test the search by title and by status" do
+    @user=User.first
+    Task.create!(title: "test", content: "content2", user_id: @user.id)
     visit tasks_path
-    fill_in 'Enter the status', with: 'Ended'
-    fill_in 'Enter the title', with: 'Student'
+    fill_in 'Enter a title or status you want to search: ', with: 'test'
     click_button 'Search'
-    expect(page).to have_content 'Ended'
+    expect(page).to have_content 'test'
+    expect(page).to have_content 'Not started'
   end
 
 end

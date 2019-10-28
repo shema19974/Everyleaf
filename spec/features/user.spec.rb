@@ -24,17 +24,18 @@ RSpec.feature "User management function", type: :feature do
     end
     scenario "Test user creation" do
       User.create!(name: 'Shema', email: 'shemab@gmail.com', admin: 'true', password: 'prince')
-      visit admin_users_path
+      visit users_path
       expect(page ).to  have_content  'Shema'
     end
     scenario "test enable user creation page" do
+      User.create!(name: 'Shema', email: 'shemab@gmail.com', admin: 'true', password: 'prince')
       visit admin_users_path
-      expect(page ).to  have_content  'New Task'
+      expect(page ).to  have_content  'To go to this page, you must sign in as an admin'
     end
     scenario "Test details of the user" do
       @user= User.create!(name: 'Mimi', email: 'mimi@gmail.com', admin: 'true', password: '1234567')
       visit admin_user_path(id: @user.id)
-      expect(page).to have_content('Mimi')
+      expect(page).to have_content('you must sign in as an admin')
     end
     scenario 'Test to delete the user' do
       User.create!(name: 'cherif', email: 'cherif@gmail.com', admin: 'true', password: 'prince')
@@ -47,7 +48,7 @@ RSpec.feature "User management function", type: :feature do
        visit new_admin_user_path
        User.create!(name: 'Kaka', email: 'kaka@gmail.com', admin: 'true', password: 'prince')
        visit  admin_users_url
-     expect(page).to have_text('Kaka')
+       expect(page).to have_text('you must sign in as an admin')
     end
 end
 
