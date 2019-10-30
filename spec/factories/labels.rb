@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :label do
-    name { "MyText" }
-    task { nil }
+    title { "MyString" }
+    user { nil }
   end
 end

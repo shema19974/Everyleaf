@@ -1,6 +1,6 @@
 <% if logged_in? %>
    <div class="container navigation_bar">
-      <h1>New Task</h1>
+    <h4>New Task</h4>
       <%= render 'form', task: @task %>
       <%= link_to 'Back', tasks_path, class:'btn-create btn btn-secondary' %>
    </div>
