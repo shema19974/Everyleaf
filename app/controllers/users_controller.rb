@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_param, only: [:show, :edit, :update, :destroy]
+  before_action :find_param, only: [:show, :edit, :update, :destroy, :check_profile]
   def new
     @user = User.new
   end
@@ -36,6 +36,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    unless logged_in? && current_user.id == @user.id
+      redirect_to root_path, notice: "To see the user profile, You must first login."
+    end
   end
 
   def update

@@ -1,0 +1,21 @@
+<div class="container">
+  <h3>Labels</h3>
+ 
+   <% @labels.each do |label| %>
+   <div class="card" style="margin-bottom:10px" width="20rem">
+      <div class="card-body">
+        Content: <%= label.title %><br>
+        User_name: <%= label.user.name %>
+      </div>
+      <div class="card-footer">
+        <%= link_to 'Show', label, class:"btn btn-secondary btn-sm"%>
+        <%= link_to 'Edit', edit_label_path(label), class:"btn btn-warning btn-sm" %>
+        <%= link_to 'Destroy', label, method: :delete, class:"btn btn-danger btn-sm",data: { confirm: 'Are you sure?' } %>
+      </div>
+      </div>
+   <% end %>
+
+  <br>
+  <%= link_to 'New Label', new_label_path, class:"btn btn-primary" %>
+
+</div>

@@ -1,3 +1,4 @@
+<%= render 'layouts/nav_login'%>
 <div>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -27,13 +28,7 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, class:'form-control' %>
     </div>
-
-    <div class="form-group">
-      <%= f.label :admin %>
-      <%= f.radio_button :admin, 'true' %>
-    </div>
-
-    <%= f.submit "Create my account", class:'btn btn-primary sign-up-btn' %>
+    <%= f.submit "Create my account", class:'btn btn-primary sign-up-btn rounded-pill' %>
   <% end %>
   <p>If you have account <%= link_to "Login", new_session_path %><p>
 </div>

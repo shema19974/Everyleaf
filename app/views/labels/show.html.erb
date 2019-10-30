@@ -1,0 +1,10 @@
+<div class="container navigation_bar card">
+   <div class="card-body">
+      Content: <%= @label.title %><br>
+      User_name: <%= @label.user.name %>
+   </div>
+  <div class="card-footer">
+    <%= link_to 'Edit', edit_label_path(@label), class:"btn btn-warning bt-sm" %> |
+    <%= link_to 'Back', labels_path, class:"btn btn-secondary btn-light"%>
+  </div>
+</div>

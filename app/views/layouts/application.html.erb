@@ -13,7 +13,7 @@
     <%end%> 
   </head>
   <body>
-    <div class="message">
+    <div class="container message message1">
       <% flash.each do |key, value| %>
         <%= content_tag(:div, value, class: "#{key}") %>
       <% end %>
