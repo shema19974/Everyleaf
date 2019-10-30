@@ -1,6 +1,5 @@
 <div class="container">
-  <h3>Labels</h3>
- 
+  <h3>Labels</h3> 
    <% @labels.each do |label| %>
    <div class="card" style="margin-bottom:10px" width="20rem">
       <div class="card-body">
@@ -14,8 +13,6 @@
       </div>
       </div>
    <% end %>
-
   <br>
   <%= link_to 'New Label', new_label_path, class:"btn btn-primary" %>
-
 </div>
