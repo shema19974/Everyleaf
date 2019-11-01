@@ -19,7 +19,7 @@ class Admin::UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id]= @user.id
-        format.html { redirect_to admin_users_path(@user.id), notice: 'User was successfully created.' }
+        format.html { redirect_to admin/users_path(@user.id), notice: 'User was successfully created.' }
         format.json { render :index, status: :created, location: @user }
       else
         format.html { render :new }
