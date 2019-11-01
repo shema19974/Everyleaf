@@ -1,14 +1,16 @@
-<%= render 'layouts/nav_login'%>
+<%= render 'layouts/nav_login' %>
 <div class="container card sign-up" style="width: 20rem; height: 30rem">
 <p>If not registed <%= link_to "Sign up", new_user_path %></p>
   <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %> 
     <div class="form-group">
       <%= f.label :email, class:'font-weight-bold' %>
-      <%= f.email_field :email, class:"form-control"%>
+      <%= f.email_field :email, class:"form-control", required: true%>
+    
     </div>
     <div class="form-group">
       <%= f.label :password , class:'font-weight-bold'%>
-      <%= f.password_field :password, class:"form-control" %>
+      <%= f.password_field :password, class:"form-control", required: true %>
+    
     </div>
   <%= f.submit "Log in" ,class:"btn btn-primary font-weight-bold sign-up-btn rounded-pill" %>     
   <% end %>

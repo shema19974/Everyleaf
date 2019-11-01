@@ -6,15 +6,15 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       if user.admin?
-         redirect_to admin_users_path
-      elsif !user.admin?
+        redirect_to admin_users_path
+      else
       redirect_to tasks_path
-        else
+      end
+    else
       flash[:danger] = 'Failed to login'
       render 'new'
-  end 
-end
-end   
+    end
+  end  
   def destroy
     session.delete(:user_id)
     flash[:notice] = 'You logged out'
