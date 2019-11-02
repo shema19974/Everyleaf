@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       if user.admin?
-        redirect_to admin_users_path, notice:"You are logged in as a user"
+        redirect_to admin_users_path, notice:"You are logged in as an admin user"
       else
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: "Login success "
       end
     else
       flash[:danger] = 'Failed to login'

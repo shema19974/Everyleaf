@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save 
+        session[:user_id]= @user.id
         if @user.admin?
             format.html { redirect_to admin_users_url, notice: 'User was successfully created'}
           elsif !@user.admin?
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
 
   def show
     unless logged_in? && current_user.id == @user.id
-      redirect_to root_path, notice: "To see the user profile, You must first login."
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 

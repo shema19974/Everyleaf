@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :find_param, only: [:show, :edit, :update, :destroy]
-  before_action :must_be_admin, except: [:new]
+  before_action :must_be_admin
   def must_be_admin
     unless current_user.try(:admin?)
       redirect_to root_path, notice:"To go to this page, you must sign in as an admin"
@@ -54,7 +54,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     unless logged_in? && current_user.id == @user.id
-      redirect_to root_path, notice: "To see the user profile, You must first login."
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 
