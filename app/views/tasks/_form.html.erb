@@ -43,9 +43,8 @@
       <%= form.radio_button :priority, 'low' %>Low <%= form.radio_button :priority, 'medium' %>Medium <%= form.radio_button :priority, 'high' %>High
     </div>
     <div class = "tables">
-     <%= form.label :labels %><br />
-      <% Label.all.each do |label| %>
-        
+     <h4><%= form.label :labels %></h4><br />
+      <% Label.all.each do |label| %>        
           <% if label.user.id == current_user.id %>
           <%= form.label:title, label.title %>
           <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>

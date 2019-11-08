@@ -53,9 +53,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    unless logged_in? && current_user.id == @user.id
-      raise ActionController::RoutingError.new('Not Found')
-    end
+    # unless logged_in? && current_user.id == @user.id && user.admin?
+    #   raise ActionController::RoutingError.new('Not Found')
+    # end
   end
 
   private

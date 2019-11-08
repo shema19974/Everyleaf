@@ -35,10 +35,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    unless logged_in? && current_user.id == @user.id
-      raise ActionController::RoutingError.new('Not Found')
-    end
+  def show  
+    # unless  logged_in? && current_user.id == !@user.id
+    #   raise ActionController::RoutingError.new('Not Found')      
+    # end
   end
 
   def update

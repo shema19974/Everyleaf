@@ -1,14 +1,20 @@
 <div class="container navigation_bar">
   <h3>Tasks</h3>
+  <div>
   <%= search_form_for @search do |f| %>
     <form class="form-inline">
       <div class="form-group mx-sm-3 mb-2">
         <%= f.text_field :title_or_status_cont, class:"form-control btn-search",style:'margin-bottom:0px; width:40%',placeholder:'Enter a title or status you want to search: '%>
         <%= f.submit "Search", class:'btn btn-info class="btn btn-primary mb-2'%>
        </div>
-    </form>
-    
+    </form>    
   <%end%>
+  <%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], class:"form-control btn-search",style:'margin-bottom:0px; width:40%', placeholder: "Search by label: " %>
+  <%= submit_tag "search", class:'btn btn-info class="btn btn-primary mb-2' %>
+  <% end %>
+  
+  
   <br>
   <table class="table table-hover table-bordered">
     <thead>

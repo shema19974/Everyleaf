@@ -9,6 +9,8 @@ class TasksController < ApplicationController
       @tasks = Task.order('priority DESC').page(params[:page])
     elsif params[:sort_with_ended_at]
       @tasks = Task.order('end_date DESC').page(params[:page])
+    elsif params[:search]
+      @tasks = Task.search(params[:search]).order("created_at DESC").page(params[:page])
     else params[:sort_with_created_at]
       @tasks = Task.order('created_at DESC').page(params[:page])
     end

@@ -4,8 +4,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
   has_secure_password
   has_many :tasks, dependent: :destroy
-  before_validation { email.downcase! }  
-
+  before_validation { email.downcase! } 
+  
   def self.count_admins
     @users = User.all
     @admins=0

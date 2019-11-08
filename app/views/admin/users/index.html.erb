@@ -19,6 +19,7 @@
           <td><%= Task.where(user_id: item.id).count %></td>
           <td><%= item.admin %></td>
           <td>
+          <%= link_to 'Details', admin_user_path(item), class:'btn btn-warning' %>
            <%= link_to 'Edit', edit_admin_user_path(item), class:'btn btn-warning btn-sm' %>
            <%= link_to 'Destroy', item, class:'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>              
           </td>

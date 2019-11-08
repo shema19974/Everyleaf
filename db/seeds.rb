@@ -7,3 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create(name: 'Shema', email: 'shema@gmail.com', password: 'shema123')
 User.create(name: 'Prince', email: 'prince@gmail.com', password: 'prince',admin: 'true')
+Label.create(title: 'Label1', user_id: '1')
+Label.create(title: 'Label2', user_id: '1')
+Label.create(title: 'Label3', user_id: '2')
+Label.create(title: 'Label4', user_id: '2')

@@ -10,5 +10,8 @@ class Task < ApplicationRecord
     has_many :labels, :through => :tasks_labels
     accepts_nested_attributes_for :tasks_labels, :reject_if => proc { |a|
     a['label_id'].blank? }
-    accepts_nested_attributes_for :labels    
+    accepts_nested_attributes_for :labels  
+    def self.search(search)
+        Task.joins(:labels).where("labels.title LIKE ?", "%#{search}%")
+    end  
 end
