@@ -14,7 +14,7 @@ RSpec.feature "User management function", type: :feature do
       click_on  'Log in'
     end
     scenario "Test the number of users" do
-      User.create!(name: 'shamil', email: 'shamil.com', admin: 'true', password: 'prince')
+      User.create!(name: 'shamil', email: 'shamil@gmail.com', admin: 'true', password: 'prince')
       @user = User.all.count
       expect(@user).to eq 2
     end    
