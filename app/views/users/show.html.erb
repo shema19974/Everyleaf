@@ -1,24 +1,25 @@
 <% if logged_in? %>
 <div class="container navigation_bar card">
-  <div class="card-body">
-    <p>Name: <%= @user.name %></p>
-    <p>Email address: <%= @user.email %></p>
+  <div class="card-body prof">
+    <h6>Name: <%= @user.name %></h6>
+    <h6>Email address: <%= @user.email %></h6>
   <div>
-  <h4>Tasks</h4>
-  <% @user.tasks.each do |item| %>
-    <tr>
-        <td><%= item.title%></td>
-        <td><%= item.content%></td>
-        <td><%= item.start_date%></td>
-        <td><%= item.end_date%></td>
-        <td><%= item.status%></td>
-        <td><%= item.priority%></td>
-    </tr>     
-    <%end%>  
-
-  <div class="card-footer">
-    <%= link_to 'Back', users_path, class:'btn btn-secondary btn-sm' %>
-    <%= link_to 'Edit', edit_user_path(@user), class:'btn btn-warning btn-sm' %>
-  <div>  
-</div>
+  <h4 style="color:blue">Tasks</h4>
+  
+    <% @user.tasks.each do |item| %>
+   
+      <div>
+      <p>Title: <%= item.title%></p>
+      <p>Content: <%= item.content%></p>
+      <p>Start_date: <%= item.start_date%></p>
+      <p>End_date: <%= item.end_date%></p>
+      <p>Status: <%= item.status%></p>
+      <p>Priority: <%= item.priority%></p>
+      </div>
+    <div>
+      <%= link_to 'Back', users_path, class:'btn btn-secondary btn-sm' %>
+      <%= link_to 'Edit', edit_user_path(@user), class:'btn btn-warning btn-sm' %>
+    </div>
+  <%end%>  
 <%end%>
+</div>

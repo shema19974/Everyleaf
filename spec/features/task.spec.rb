@@ -14,7 +14,6 @@ RSpec.feature "Task management function", type: :feature do
   end
 
   scenario "Test task list" do    
-
     visit new_task_path
 
     @user=User.first

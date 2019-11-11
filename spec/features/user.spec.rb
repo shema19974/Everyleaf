@@ -34,8 +34,8 @@ RSpec.feature "User management function", type: :feature do
     end
     scenario "Test details of the user" do
       @user= User.create!(name: 'Mimi', email: 'mimi@gmail.com', admin: 'true', password: '1234567')
-      visit admin_user_path(id: @user.id)
-      expect(page).to have_content('you must sign in as an admin')
+      visit admin_users_path
+      expect(page).to have_content('To go to this page, you must sign in as an admin')
     end
     scenario 'Test to delete the user' do
       User.create!(name: 'cherif', email: 'cherif@gmail.com', admin: 'true', password: 'prince')
